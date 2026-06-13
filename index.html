@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نتائج امتحان شهادة البكالوريا</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        /* --- صفحة الدخول --- */
+        #login-page {
+            display: block;
+        }
+
+        .header-bg {
+            background-color: #3f5a46; /* لون أخضر داكن مطابق للصورة */
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-bottom-left-radius: 50% 10%;
+            border-bottom-right-radius: 50% 10%;
+            margin-bottom: 30px;
+        }
+
+        .header-bg h4 {
+            margin: 0;
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        .header-bg h1 {
+            margin: 15px 0 5px;
+            font-size: 28px;
+        }
+
+        .header-bg p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .instructions {
+            text-align: center;
+            color: white;
+            font-size: 14px;
+            margin-top: 15px;
+        }
+
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .input-label {
+            background-color: #3f5a46;
+            color: white;
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 5px;
+            font-size: 14px;
+            margin-bottom: -1px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+            font-family: inherit;
+        }
+
+        .captcha-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .captcha-question {
+            font-weight: bold;
+        }
+
+        .captcha-input {
+            width: 50%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .submit-btn {
+            background-color: #3f5a46;
+            color: white;
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: inherit;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .submit-btn:hover {
+            background-color: #2c4232;
+        }
+
+        /* --- صفحة النتيجة --- */
+        #result-page {
+            display: none;
+            max-width: 600px;
+            margin: 20px auto;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .result-header {
+            text-align: center;
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .congrats {
+            text-align: center;
+            font-size: 32px;
+            font-weight: bold;
+            color: #333;
+            margin: 20px 0;
+        }
+
+        .result-data {
+            padding: 0 40px;
+        }
+
+        .data-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .data-label {
+            color: #666;
+            width: 40%;
+        }
+
+        .data-value {
+            font-weight: bold;
+            width: 60%;
+            text-align: right;
+        }
+
+        .warning-box {
+            background-color: #fff9c4;
+            border: 1px solid #eee59c;
+            margin: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .footer-btn {
