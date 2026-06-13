@@ -188,3 +188,127 @@
         }
 
         .footer-btn {
+            background-color: #5cb85c;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            border-radius: 0 0 8px 8px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .error-msg {
+            color: red;
+            text-align: center;
+            display: none;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="login-page">
+        <div class="header-bg">
+            <h4>الجمهورية الجزائرية الديمقراطية الشعبية<br>وزارة التربية الوطنية<br>الديوان الوطني للامتحانات والمسابقات</h4>
+            <h1>نتائج امتحان شهادة البكالوريا</h1>
+            <p>يتمنى السيد وزير التربية الوطنية النجاح لكل المترشحين</p>
+            <div class="instructions">
+                أحجز رقم التسجيل ورقمك السري وأجب عن السؤال ثم أنقر على زر "استظهار النتيجة"
+            </div>
+        </div>
+
+        <div class="form-container">
+            <div id="error-message" class="error-msg">المعلومات المدخلة خاطئة، يرجى المحاولة مرة أخرى.</div>
+            
+            <div class="input-group">
+                <div class="input-label">👤 رقم التسجيل</div>
+                <input type="text" id="reg-num" class="input-field" placeholder="رقم التسجيل">
+            </div>
+
+            <div class="input-group">
+                <div class="input-label">🔒 الرقم السري</div>
+                <input type="password" id="secret-num" class="input-field" placeholder="الرقم السري">
+            </div>
+
+            <div class="captcha-group">
+                <div class="input-label" style="margin-bottom: 0;">الجواب</div>
+                <div class="captcha-question">سؤال: كم يساوي 4-4؟</div>
+            </div>
+            <input type="text" id="captcha" class="input-field" style="margin-bottom: 20px;" placeholder="0">
+
+            <button class="submit-btn" onclick="checkResults()">🔍 استظهار النتيجة</button>
+        </div>
+    </div>
+
+    <div id="result-page">
+        <div class="result-header">النتيجــــــة</div>
+        
+        <div class="congrats">ألف مبروك</div>
+        
+        <div class="result-data">
+            <div class="data-row">
+                <span class="data-label">رقم التسجيل :</span>
+                <span class="data-value">22032009</span>
+            </div>
+            <div class="data-row">
+                <span class="data-label">الشعبة :</span>
+                <span class="data-value">العلوم التجريبية</span>
+            </div>
+            <div class="data-row">
+                <span class="data-label">اللقب :</span>
+                <span class="data-value">خوجة</span>
+            </div>
+            <div class="data-row">
+                <span class="data-label">الاسم :</span>
+                <span class="data-value">شيماء</span>
+            </div>
+            <div class="data-row">
+                <span class="data-label">تاريخ الميلاد :</span>
+                <span class="data-value">22 مارس 2009</span>
+            </div>
+            <div class="data-row">
+                <span class="data-label">مكان الميلاد :</span>
+                <span class="data-value">وهران</span>
+            </div>
+            <div class="data-row" style="font-size: 18px; margin-top: 20px;">
+                <span class="data-label">المعدل :</span>
+                <span class="data-value" style="font-size: 22px;">17.50</span>
+            </div>
+            <div class="data-row">
+                <span class="data-label">الملاحظة :</span>
+                <span class="data-value">بتقدير جيد جدا</span>
+            </div>
+        </div>
+
+        <div class="warning-box">
+            <strong>⚠ هام جدا : كشوف النقاط</strong><br>
+            على جميع المترشحين الناجحين الدخول مجددا في هذا الموقع لاستخراج كشوف النقاط وذلك ابتداء من اليوم الموالي لإعلان النتائج.
+        </div>
+
+        <div class="footer-btn">
+            نتمنى التوفيق للجميع ❮
+        </div>
+    </div>
+
+    <script>
+        function checkResults() {
+            // جلب القيم التي أدخلها المستخدم
+            var regNum = document.getElementById("reg-num").value;
+            var secretNum = document.getElementById("secret-num").value;
+            var captcha = document.getElementById("captcha").value;
+            var errorMsg = document.getElementById("error-message");
+
+            // التحقق من رقم التسجيل والرقم السري المحددين
+            if (regNum === "22032009" && secretNum === "2009" && captcha === "0") {
+                // إخفاء صفحة الدخول وإظهار صفحة النتيجة
+                document.getElementById("login-page").style.display = "none";
+                document.getElementById("result-page").style.display = "block";
+                errorMsg.style.display = "none";
+            } else {
+                // إظهار رسالة خطأ في حال إدخال معلومات أخرى
+                errorMsg.style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>
