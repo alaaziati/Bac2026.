@@ -28,22 +28,39 @@
             border-bottom-left-radius: 50% 10%;
             border-bottom-right-radius: 50% 10%;
             margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
-        .header-bg h4 {
-            margin: 0;
+        /* تنسيق الجزء العلوي (النص + العلم) */
+        .top-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .header-titles {
+            text-align: right;
             font-size: 14px;
-            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        .algeria-flag {
+            width: 70px;
+            height: auto;
+            border: 1px solid rgba(255,255,255,0.5);
+            border-radius: 2px;
         }
 
         .header-bg h1 {
             margin: 15px 0 5px;
-            font-size: 28px;
+            font-size: 30px;
         }
 
         .header-bg p {
             margin: 0;
-            font-size: 14px;
+            font-size: 15px;
         }
 
         .instructions {
@@ -57,8 +74,9 @@
             max-width: 500px;
             margin: 0 auto;
             background: white;
-            padding: 20px;
+            padding: 25px;
             border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
         .input-group {
@@ -86,6 +104,12 @@
             box-sizing: border-box;
             font-size: 16px;
             font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .input-field:focus {
+            border-color: #3f5a46;
+            outline: none;
         }
 
         .captcha-group {
@@ -97,13 +121,6 @@
 
         .captcha-question {
             font-weight: bold;
-        }
-
-        .captcha-input {
-            width: 50%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
             font-size: 16px;
         }
 
@@ -122,6 +139,7 @@
             justify-content: center;
             align-items: center;
             gap: 10px;
+            transition: background-color 0.3s;
         }
 
         .submit-btn:hover {
@@ -136,7 +154,8 @@
             background: white;
             border: 1px solid #ddd;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
         }
 
         .result-header {
@@ -145,14 +164,23 @@
             border-bottom: 1px solid #ddd;
             font-weight: bold;
             font-size: 18px;
+            color: #333;
+        }
+
+        /* تأثير الوميض لكلمة الف مبروك */
+        @keyframes flashBlink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
         }
 
         .congrats {
             text-align: center;
-            font-size: 32px;
+            font-size: 36px;
             font-weight: bold;
             color: #333;
-            margin: 20px 0;
+            margin: 25px 0;
+            animation: flashBlink 1.2s infinite; /* تطبيق تأثير الحركة */
         }
 
         .result-data {
@@ -175,16 +203,18 @@
             font-weight: bold;
             width: 60%;
             text-align: right;
+            color: #222;
         }
 
         .warning-box {
             background-color: #fff9c4;
             border: 1px solid #eee59c;
-            margin: 20px;
+            margin: 25px 20px;
             padding: 15px;
             border-radius: 5px;
             font-size: 13px;
             text-align: center;
+            line-height: 1.6;
         }
 
         .footer-btn {
@@ -192,24 +222,38 @@
             color: white;
             text-align: center;
             padding: 15px;
-            border-radius: 0 0 8px 8px;
             font-weight: bold;
             font-size: 16px;
+            cursor: pointer;
         }
 
         .error-msg {
-            color: red;
+            color: #d9534f;
+            background-color: #f2dede;
+            border: 1px solid #ebccd1;
+            padding: 10px;
+            border-radius: 5px;
             text-align: center;
             display: none;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
 
+    <!-- واجهة إدخال البيانات -->
     <div id="login-page">
         <div class="header-bg">
-            <h4>الجمهورية الجزائرية الديمقراطية الشعبية<br>وزارة التربية الوطنية<br>الديوان الوطني للامتحانات والمسابقات</h4>
+            <div class="top-header">
+                <div class="header-titles">
+                    الجمهورية الجزائرية الديمقراطية الشعبية<br>
+                    وزارة التربية الوطنية<br>
+                    الديوان الوطني للامتحانات والمسابقات
+                </div>
+                <!-- صورة علم الجزائر -->
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/77/Flag_of_Algeria.svg" alt="علم الجزائر" class="algeria-flag">
+            </div>
             <h1>نتائج امتحان شهادة البكالوريا</h1>
             <p>يتمنى السيد وزير التربية الوطنية النجاح لكل المترشحين</p>
             <div class="instructions">
@@ -218,7 +262,7 @@
         </div>
 
         <div class="form-container">
-            <div id="error-message" class="error-msg">المعلومات المدخلة خاطئة، يرجى المحاولة مرة أخرى.</div>
+            <div id="error-message" class="error-msg">المعلومات المدخلة خاطئة، يرجى التأكد من رقم التسجيل والرقم السري وجواب السؤال.</div>
             
             <div class="input-group">
                 <div class="input-label">👤 رقم التسجيل</div>
@@ -240,6 +284,7 @@
         </div>
     </div>
 
+    <!-- واجهة النتيجة -->
     <div id="result-page">
         <div class="result-header">النتيجــــــة</div>
         
@@ -248,64 +293,101 @@
         <div class="result-data">
             <div class="data-row">
                 <span class="data-label">رقم التسجيل :</span>
-                <span class="data-value">22032009</span>
+                <span class="data-value" id="res-reg"></span>
             </div>
             <div class="data-row">
                 <span class="data-label">الشعبة :</span>
-                <span class="data-value">العلوم التجريبية</span>
+                <span class="data-value" id="res-stream"></span>
             </div>
             <div class="data-row">
                 <span class="data-label">اللقب :</span>
-                <span class="data-value">خوجة</span>
+                <span class="data-value" id="res-last"></span>
             </div>
             <div class="data-row">
                 <span class="data-label">الاسم :</span>
-                <span class="data-value">شيماء</span>
+                <span class="data-value" id="res-first"></span>
             </div>
             <div class="data-row">
                 <span class="data-label">تاريخ الميلاد :</span>
-                <span class="data-value">22 مارس 2009</span>
+                <span class="data-value" id="res-dob"></span>
             </div>
             <div class="data-row">
                 <span class="data-label">مكان الميلاد :</span>
-                <span class="data-value">وهران</span>
+                <span class="data-value" id="res-pob"></span>
             </div>
             <div class="data-row" style="font-size: 18px; margin-top: 20px;">
                 <span class="data-label">المعدل :</span>
-                <span class="data-value" style="font-size: 22px;">17.50</span>
+                <span class="data-value" id="res-avg" style="font-size: 22px;"></span>
             </div>
             <div class="data-row">
                 <span class="data-label">الملاحظة :</span>
-                <span class="data-value">بتقدير جيد جدا</span>
+                <span class="data-value" id="res-mention"></span>
             </div>
         </div>
 
         <div class="warning-box">
             <strong>⚠ هام جدا : كشوف النقاط</strong><br>
-            على جميع المترشحين الناجحين الدخول مجددا في هذا الموقع لاستخراج كشوف النقاط وذلك ابتداء من اليوم الموالي لإعلان النتائج.
+            على جميع المترشحين الناجحين الدخول مجددا في هذا الموقع لاستخراج كشوف النقاط وذلك ابتداء من اليوم الموالي لإعلان النتائج. الموقع سيغلق في حدود شهر من إعلان النتائج.
         </div>
 
-        <div class="footer-btn">
+        <div class="footer-btn" onclick="location.reload()">
             نتمنى التوفيق للجميع ❮
         </div>
     </div>
 
     <script>
+        // قاعدة بيانات مصغرة للمترشحين
+        const candidates = {
+            "22032009": {
+                secret: "2009",
+                stream: "العلوم التجريبية",
+                lastName: "خوجة",
+                firstName: "شيماء",
+                dob: "22 مارس 2009",
+                pob: "وهران",
+                average: "17.50",
+                mention: "بتقدير جيد جدا"
+            },
+            "28012009": {
+                secret: "2009",
+                stream: "العلوم التجريبية",
+                lastName: "زياتي",
+                firstName: "علاء الدين",
+                dob: "28 جانفي 2009",
+                pob: "وهران",
+                average: "17.34",
+                mention: "بتقدير جيد جدا"
+            }
+        };
+
         function checkResults() {
-            // جلب القيم التي أدخلها المستخدم
-            var regNum = document.getElementById("reg-num").value;
-            var secretNum = document.getElementById("secret-num").value;
-            var captcha = document.getElementById("captcha").value;
+            var regNum = document.getElementById("reg-num").value.trim();
+            var secretNum = document.getElementById("secret-num").value.trim();
+            var captcha = document.getElementById("captcha").value.trim();
             var errorMsg = document.getElementById("error-message");
 
-            // التحقق من رقم التسجيل والرقم السري المحددين
-            if (regNum === "22032009" && secretNum === "2009" && captcha === "0") {
+            // التحقق من وجود المترشح وصحة الرقم السري وسؤال الحماية
+            if (candidates[regNum] && candidates[regNum].secret === secretNum && captcha === "0") {
+                
+                // جلب بيانات المترشح الناجح
+                let student = candidates[regNum];
+
+                // تعبئة البيانات في واجهة النتيجة
+                document.getElementById("res-reg").innerText = regNum;
+                document.getElementById("res-stream").innerText = student.stream;
+                document.getElementById("res-last").innerText = student.lastName;
+                document.getElementById("res-first").innerText = student.firstName;
+                document.getElementById("res-dob").innerText = student.dob;
+                document.getElementById("res-pob").innerText = student.pob;
+                document.getElementById("res-avg").innerText = student.average;
+                document.getElementById("res-mention").innerText = student.mention;
+
                 // إخفاء صفحة الدخول وإظهار صفحة النتيجة
                 document.getElementById("login-page").style.display = "none";
                 document.getElementById("result-page").style.display = "block";
                 errorMsg.style.display = "none";
             } else {
-                // إظهار رسالة خطأ في حال إدخال معلومات أخرى
+                // إظهار رسالة خطأ
                 errorMsg.style.display = "block";
             }
         }
